@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Decisão Muito Madura</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    button {
+        padding: 14px 22px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    #insistir {
+        position: relative;
+    }
+
+    #barraContainer {
+        width: 300px;
+        height: 25px;
+        border: 1px solid black;
+        margin: 20px auto;
+        display: none;
+    }
+
+    #barra {
+        height: 100%;
+        width: 0%;
+        background-color: black;
+    }
+</style>
+</head>
+
+<body>
+
+<h2 id="titulo">
+Depois de muita reflexão, tomei uma decisão madura.
+</h2>
+
+<p id="subtexto">
+Hoje vou treinar perna completa.
+</p>
+
+<button id="confirmar" onclick="iniciarPlano()">
+Confirmar decisão responsável
+</button>
+
+<div id="barraContainer">
+    <div id="barra"></div>
+</div>
+
+<div id="final" style="display:none;">
+    <h2>Plano carregado: Treino de Glúteo Premium.</h2>
+    <button onclick="alert('Decisão correta. Ordem natural das coisas restabelecida.')">
+        Aceitar a realidade
+    </button>
+    <button id="insistir">
+        Insistir em perna
+    </button>
+</div>
+
+<script>
+
+function iniciarPlano() {
+    document.getElementById("confirmar").style.display = "none";
+    document.getElementById("barraContainer").style.display = "block";
+
+    let barra = document.getElementById("barra");
+    let largura = 0;
+
+    let intervalo = setInterval(function() {
+        if (largura >= 100) {
+            clearInterval(intervalo);
+            document.getElementById("barraContainer").style.display = "none";
+            document.getElementById("titulo").innerText = "Analisando decisão...";
+            document.getElementById("subtexto").innerText = "";
+            document.getElementById("final").style.display = "block";
+        } else {
+            largura++;
+            barra.style.width = largura + "%";
+        }
+    }, 20);
+}
+
+const botao = document.getElementById("insistir");
+let tentativas = 0;
+
+botao.addEventListener("mouseover", function() {
+    tentativas++;
+
+    const frases = [
+        "Tem certeza?",
+        "Pense melhor.",
+        "Não faça isso.",
+        "Última chance.",
+        "Glúteo é inevitável.",
+        "Aceite seu destino."
+    ];
+
+    botao.innerText = frases[tentativas % frases.length];
+
+    const x = Math.random() * 400 - 200;
+    const y = Math.random() * 200 - 100;
+
+    botao.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+</script>
+
+</body>
+</html>
